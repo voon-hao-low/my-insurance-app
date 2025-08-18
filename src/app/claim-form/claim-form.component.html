@@ -1,0 +1,21 @@
+<section class="form-container">
+    <form [formGroup]="claimSubmission" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Name</label>
+      <input formControlName="name" type="text" class="form-control" placeholder="Name" />
+    </div>
+    <div class="form-group">
+      <label for="email">Policy Id</label>
+      <input formControlName="policyId" type="text" class="form-control" placeholder="Policy Id" />
+    </div>
+    <div class="form-group">
+      <label for="password">Claim Reason</label>
+      <input formControlName="claimReason" type="text" class="form-control" placeholder="Claim Reason" />
+    </div>
+    <div class="form-group">
+      <label for="password">Claim Amount</label>
+      <input formControlName="claimAmount" type="text" class="form-control" placeholder="Claim Amount" />
+    </div>
+    <button type="submit" class="btn-submit">Submit</button>
+  </form>
+</section>

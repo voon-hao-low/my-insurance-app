@@ -1,0 +1,22 @@
+<main>
+    <section>
+        <nav class="navbar">
+            <div class="logo">
+                <a [routerLink]="['/']">My Insurance App</a>
+            </div>
+            <ul class="nav-links">
+                <li><a [routerLink]="['/']" routerLinkActive="active">Home</a></li>
+                <li class="dropdown" (click)="toggleDropdown()">
+                    <a routerLinkActive="active">Claim</a>
+                    <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+                        <li><a [routerLink]="['/claims/new']" routerLinkActive="active">Submit Claim</a></li>
+                        <li><a [routerLink]="['/claims']" routerLinkActive="active">View Claims</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+</main>

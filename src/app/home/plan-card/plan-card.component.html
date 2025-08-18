@@ -1,0 +1,10 @@
+<section class="card">
+    <img src="{{ this.insurance.image }}" alt="Card Image"
+        class="card-image">
+    <div class="card-content">
+        <h2 class="card-title">{{ this.insurance.planName }}</h2>
+        <p class="card-description">Category: {{ this.insurance.category }}</p>
+        <p class="card-description">Price: {{ this.insurance.price }}</p>
+        <button class="card-button" [routerLink]="['/plan', this.insurance.id]">Learn More</button>
+    </div>
+</section>

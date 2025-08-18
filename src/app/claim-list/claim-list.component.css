@@ -1,0 +1,141 @@
+.page-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.toggle-label {
+  font-size: 1em;
+  color: #004080;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #004080;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 90px;
+  left: 5px;
+  bottom: 5px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100px);
+}
+
+.toggle-text {
+  position:relative;
+  top: 25%;
+  left: 5%;
+  padding: 0 10% 0 10%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: #004080;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  transition: 0.4s;
+  z-index: 5;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-bar {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #004080;
+  border-radius: 4px;
+  background-color: #e6f2ff;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 5px #0066cc;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #004080;
+  padding: 10px;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #004080;
+  color: white;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #e6f2ff;
+}
+
+.data-table tr:hover {
+  background-color: #cce6ff;
+}
+
+.no-data {
+  text-align: center;
+  color: #004080;
+  font-style: italic;
+  background-color: #e6f2ff;
+  padding: 10px;
+}

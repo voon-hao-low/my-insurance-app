@@ -1,0 +1,41 @@
+<section class="page-container">
+    <h1>Claim List</h1>
+
+    <div class="toggle-container">
+        <label class="toggle-label">Search By:</label>
+        <label class="toggle-switch">
+            <input type="checkbox" [(ngModel)]="isSearchByPolicyId" (change)="onSearch()" />
+            <span class="slider">
+                <span class="toggle-text">Claim ID</span>
+                <span class="toggle-text">Policy ID</span>
+            </span>
+        </label>
+    </div>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearch()" />
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Claim ID</th>
+                    <th>Policy ID</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (filteredClaimList.length === 0) {
+                <td colspan="3" class="no-data">No Data Exists</td>
+                }
+                @for (claim of filteredClaimList; track claim.claimId) {
+                <tr>
+                    <td>{{ claim.claimId }}</td>
+                    <td>{{ claim.policyId }}</td>
+                    <td>{{ claim.status }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
