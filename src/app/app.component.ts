@@ -11,7 +11,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class App {
-  protected readonly title = 'my-project';
+  protected readonly title = 'my-insurance-app';
 
   isDropdownOpen: boolean = false;
 
