@@ -1,59 +1,80 @@
-# MyProject
+# My Insurance App 🛡️
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+This is a demo application for an Insurance Quote Finder and Claim Tracker, built to demonstrate a solid understanding of Angular architecture, HTTP integration with public APIs, form handling and validation, stateful UI implementation, and basic CRUD operations.
 
-## Development server
+## Table of Contents
 
-To start a local development server, run:
+- [Objectives](#objectives)
+- [Core Features](#core-features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
+
+## Objectives
+
+The primary objectives of My Insurance App are:
+
+- Demonstrate Angular best practices including component-based architecture, service injection, and state management
+- Showcase HTTP integration to simulate real-world API interaction for insurance quotes and claims
+- Implement reactive forms with validation for robust user input handling
+- Support basic CRUD operations for managing insurance claims
+- Provide a clean and responsive UI suitable for both desktop and mobile experiences
+- Serve as a foundation for more complex enterprise applications in the insurance domain
+
+---
+
+## Core Features
+
+- **Quote Search**  
+  Users can fill out a form to search for insurance quotes.
+- **Claim Management**  
+  View and add insurance claims.
+- **Form Validation**  
+  Built-in validation for required fields and input formats.
+- **API Integration**  
+  Uses Angular’s `HttpClient` to send and receive data from APIs.
+- **Component-Based Design**  
+  Organized into reusable components and services.
+- **Responsive Layout**  
+  Works well on both desktop and mobile screens.
+
+---
+
+## Tech Stack
+
+- **Frontend:** Angular 20+
+- **Language:** TypeScript
+- **UI Styling:** HTML5, CSS3
+- **Build Tooling:** Angular CLI
+
+---
+
+## Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/voon-hao-low/my-insurance-app.git
+cd my-insurance-app
+npm install
+```
+
+---
+
+## Running the App
+
+Start the development server:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Then open your browser at:
 
 ```bash
-ng generate component component-name
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The app will reload automatically if you change any source files.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
