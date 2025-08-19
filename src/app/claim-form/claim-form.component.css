@@ -7,15 +7,22 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.form-group {
-  margin-bottom: 15px;
+.form-container form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-container h2 {
+  font-size: 20px;
+  color: #004080;
+  margin-bottom: 10px;
 }
 
 label {
   display: block;
   font-weight: bold;
   color: #004080;
-  margin-bottom: 5px;
 }
 
 .form-control {
@@ -32,6 +39,11 @@ label {
   box-shadow: 0 0 5px #0066cc;
 }
 
+.error-message {
+  color: #ff0000;
+  font-size: 12px;
+}
+
 .btn-submit {
   width: 50%;
   padding: 10px;
@@ -44,4 +56,54 @@ label {
 
 .btn-submit:hover {
   background-color: #0066cc;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 128, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: #f0f8ff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 300px;
+  max-width: 90%;
+}
+
+.popup h2 {
+  color: #1e90ff;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.popup p {
+  color: #4682b4;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.popup button {
+  background: #1e90ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.popup button:hover {
+  background: #104e8b; /* Darker blue for hover effect */
 }

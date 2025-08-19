@@ -1,21 +1,64 @@
 <section class="form-container">
+    <h2>Claim Submission</h2>
     <form [formGroup]="claimSubmission" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Name</label>
-      <input formControlName="name" type="text" class="form-control" placeholder="Name" />
+        <label>Name</label>
+        <input class="form-control" type="text" placeholder="Enter your name" formControlName="name" />
+        @if (name?.invalid && (name?.dirty || name?.touched)) {
+        <div class="error-message">
+        @if (name?.hasError('required')) {
+        <small>This field is required.</small>
+        } @else if (name?.hasError('maxlength')) {
+        <small>This field is accepting maximum 200 characters only.</small>
+        }
+        </div>
+        }
+
+        <label>Policy Id</label>
+        <input class="form-control" type="text" placeholder="Enter your policy ID (PLCXXX)" formControlName="policyId" />
+        @if (policyId?.invalid && (policyId?.dirty || policyId?.touched)) {
+        <div class="error-message">
+        @if (policyId?.hasError('required')) {
+        <small>This field is required.</small>
+        } @else if (policyId?.hasError('pattern')) {
+        <small>This field is accepting pattern PLCXXX(3 digits number) only.</small>
+        }
+        </div>
+        }
+
+        <label>Claim Reason</label>
+        <input class="form-control" type="text" placeholder="Enter your claim reason" formControlName="claimReason" />
+        @if (claimReason?.invalid && (claimReason?.dirty || claimReason?.touched)) {
+        <div class="error-message">
+        @if (claimReason?.hasError('required')) {
+        <small>This field is required.</small>
+        } @else if (claimReason?.hasError('pattern')) {
+        <small>This field is accepting maximum 200 characters only.</small>
+        }
+        </div>
+        }
+
+        <label>Claim Amount</label>
+        <input class="form-control" type="text" placeholder="Enter your claim amount (RM)" formControlName="claimAmount" />
+        @if (claimAmount?.invalid && (claimAmount?.dirty || claimAmount?.touched)) {
+        <div class="error-message">
+        @if (claimAmount?.hasError('required')) {
+        <small>This field is required.</small>
+        } @else if (claimAmount?.hasError('pattern')) {
+        <small>This field is accepting whole number only.</small>
+        }
+        </div>
+        }
+
+        <button type="submit" class="btn-submit">Submit</button>
+    </form>
+
+    @if (submitClaimVisible) {
+    <div class="overlay">
+        <div class="popup">
+            <h2>Successful!</h2>
+            <p>Your claim ID: {{ this.claimId }}</p>
+            <button (click)="onClose()">Close</button>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="email">Policy Id</label>
-      <input formControlName="policyId" type="text" class="form-control" placeholder="Policy Id" />
-    </div>
-    <div class="form-group">
-      <label for="password">Claim Reason</label>
-      <input formControlName="claimReason" type="text" class="form-control" placeholder="Claim Reason" />
-    </div>
-    <div class="form-group">
-      <label for="password">Claim Amount</label>
-      <input formControlName="claimAmount" type="text" class="form-control" placeholder="Claim Amount" />
-    </div>
-    <button type="submit" class="btn-submit">Submit</button>
-  </form>
+    }
 </section>

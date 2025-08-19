@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 @Component({
@@ -12,14 +12,38 @@ import { RouterModule } from "@angular/router";
   styleUrl: './claim-form.component.css'
 })
 export class ClaimFormComponent {
+  submitClaimVisible: boolean = false;
+  claimId: number | undefined;
+
   claimSubmission = new FormGroup({
-    name: new FormControl(''),
-    policyId: new FormControl(''),
-    claimReason: new FormControl(''),
-    claimAmount: new FormControl('')
+    name: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+    policyId: new FormControl('', [Validators.required, Validators.pattern('^PLC[0-9]{3,3}$')]),
+    claimReason: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+    claimAmount: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   })
 
+  get name() {
+    return this.claimSubmission.get('name')
+  }
+
+  get policyId() {
+    return this.claimSubmission.get('policyId')
+  }
+
+  get claimReason() {
+    return this.claimSubmission.get('claimReason')
+  }
+
+  get claimAmount() {
+    return this.claimSubmission.get('claimAmount')
+  }
+
   onSubmit() {
+    if (this.claimSubmission.invalid) {
+      this.claimSubmission.markAllAsTouched();
+      return;
+    }
+
     var seqNumString = localStorage.getItem('seqNum');
     localStorage.setItem('seqNum', (Number(seqNumString) + 1).toString())
 
@@ -36,14 +60,20 @@ export class ClaimFormComponent {
 
     if (!!claimListString) {
       var claimList: object[] = JSON.parse(claimListString);
-
       claimList.push(submittedClaim)
 
       localStorage.setItem('claimList', JSON.stringify(claimList));
-      return;
+    } else {
+      localStorage.setItem('claimList', JSON.stringify([submittedClaim]))
     }
 
-    localStorage.setItem('claimList', JSON.stringify([submittedClaim]))
+    this.claimId = Number(seqNumString);
+    this.submitClaimVisible = true;
+  }
+
+  onClose() {
+    this.claimId = undefined;
+    this.submitClaimVisible = false;
   }
 
   constructor() {

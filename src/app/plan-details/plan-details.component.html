@@ -1,30 +1,71 @@
-<section class="container">
-    <h1>{{ this.insurance?.planName }}</h1>
-    <div class="product-details">
-        <div class="product-image">
-            <img src="{{ this.insurance?.image }}"
-                alt="Product Image">
-        </div>
-        <div class="product-info">
-            <h2>Plan Description</h2>
-            <p>{{ this.insurance?.description }}</p>
-            <h2>Coverage Details</h2>
-            <p>{{ this.insurance?.coverageDetail }}</p>
-            <h3>Base Premium: RM {{ this.insurance?.price?.toFixed(2) }}</h3>
-
-            <form class="form-container" [formGroup]="premiumCalculation" (ngSubmit)="calculatePremium()">
-                <label>Age</label>
-                <input placeholder="Age" formControlName="age">
-                <label>Sum Insured</label>
-                <input placeholder="Sum Insured" formControlName="sumInsured">
-                <label>Duration</label>
-                <input placeholder="Duration" formControlName="duration">
-                <button type='submit' class="buy-now">Calculate!</button>
-            </form>
-
-            @if (!!estimatedPremium) {
-            <h3>Your estimated premium is: RM {{ this.estimatedPremium }}</h3>
-            }
+<section class="product-detail-container">
+    <div class="product-image">
+        <img src="{{ this.insurance?.image }}" alt="Product Image" />
+    </div>
+    <div class="product-info">
+        <h1 class="product-title">{{ this.insurance?.planName }}</h1>
+        <div class="product-price">
+            <span>RM {{ this.insurance?.price }}</span>
         </div>
     </div>
+    <div class="product-description">
+        <h2>Description</h2>
+        <p>{{ this.insurance?.description }}</p>
+    </div>
+    <div class="product-description">
+        <h2>Coverage Details</h2>
+        <p>{{ this.insurance?.coverageDetail }}</p>
+    </div>
+    <div class="input-form">
+        <h2>Calculate Estimated Premium</h2>
+        <form [formGroup]="premiumCalculation" (ngSubmit)="onCalculate()">
+            <label>Age:</label>
+            <input type="text" placeholder="Enter your age" formControlName="age" required />
+            @if (age?.invalid && (age?.dirty || age?.touched)) {
+            <div class="error-message">
+                @if (age?.hasError('required')) {
+                <small>This field is required.</small>
+                } @else if (age?.hasError('pattern')) {
+                <small>This field is accepting whole number only.</small>
+                }
+            </div>
+            }
+
+            <label>Sum Insured:</label>
+            <input type="text" placeholder="Enter your sum insured (RM)" formControlName="sumInsured" />
+            @if (sumInsured?.invalid && (sumInsured?.dirty || sumInsured?.touched)) {
+            <div class="error-message">
+                @if (sumInsured?.hasError('required')) {
+                <small>This field is required.</small>
+                }@else if (sumInsured?.hasError('pattern')) {
+                <small>This field is accepting number in thousands only.</small>
+                }
+            </div>
+            }
+
+            <label>Duration:</label>
+            <input placeholder="Enter your duration (year)" formControlName="duration" />
+            @if (duration?.invalid && (duration?.dirty || duration?.touched)) {
+            <div class="error-message">
+                @if (duration?.hasError('required')) {
+                <small>This field is required.</small>
+                } @else if (duration?.hasError('pattern')) {
+                <small>This field is accepting whole number only.</small>
+                }
+            </div>
+            }
+
+            <button type="submit" class="submit-button">Calculate</button>
+        </form>
+    </div>
+
+    @if (calculationResultVisible) {
+    <div class="overlay">
+        <div class="popup">
+            <h2>Estimated Premium: </h2>
+            <p>RM {{ estimatedPremium }}</p>
+            <button (click)="onClose()">Close</button>
+        </div>
+    </div>
+    }
 </section>
