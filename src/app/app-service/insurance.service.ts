@@ -1,6 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Insurance } from '../app-interface/insurance';
-import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'

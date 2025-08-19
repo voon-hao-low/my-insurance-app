@@ -25,10 +25,10 @@
                 </tr>
             </thead>
             <tbody>
-                @if (filteredClaimList.length === 0) {
+                @if (displayClaimList.length === 0) {
                 <td colspan="3" class="no-data">No Data Exists</td>
                 }
-                @for (claim of filteredClaimList; track claim.claimId) {
+                @for (claim of displayClaimList; track claim.claimId) {
                 <tr>
                     <td>{{ claim.claimId }}</td>
                     <td>{{ claim.policyId }}</td>
@@ -37,5 +37,12 @@
                 }
             </tbody>
         </table>
+        <div class="pagination">
+            <button class="page-btn" [disabled]="page === 1" (click)="onPagination(page - 1)">Previous</button>
+            @for (p of visiblePages; track p) {
+            <button class="page-btn" [class.active]="page === p" (click)="onPagination(p)">{{ p }}</button>
+            }
+            <button class="page-btn" [disabled]="page === totalPages" (click)="onPagination(page + 1)">Next</button>
+        </div>
     </div>
 </section>

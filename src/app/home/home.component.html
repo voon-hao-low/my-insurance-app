@@ -1,25 +1,31 @@
-<main>
-    <section class="page-container">
-        <h1>Insurance Plan List</h1>
+<section class="page-container">
+    <h1>Insurance Plan List</h1>
 
-        <div class="toggle-container">
-            <label class="toggle-label">Search By:</label>
-            <label class="toggle-switch">
-                <input type="checkbox" [(ngModel)]="isSearchByCategory" (change)="onSearch()" />
-                <span class="slider">
-                    <span class="toggle-text">Plan Name</span>
-                    <span class="toggle-text">Category</span>
-                </span>
-            </label>
-        </div>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearch()" />
-        </div>
+    <div class="toggle-container">
+        <label class="toggle-label">Search By:</label>
+        <label class="toggle-switch">
+            <input type="checkbox" [(ngModel)]="isSearchByCategory" (change)="onSearch()" />
+            <span class="slider">
+                <span class="toggle-text">Plan Name</span>
+                <span class="toggle-text">Category</span>
+            </span>
+        </label>
+    </div>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearch()" />
+    </div>
 
-        <div class="results">
-            @for (insurance of filteredInsuranceList; track insurance.id) {
-            <app-plan-card [insurance]="insurance"></app-plan-card>
-            }
-        </div>
-    </section>
-</main>
+    <div class="results">
+        @for (insurance of displayInsuranceList; track insurance.id) {
+        <app-plan-card [insurance]="insurance"></app-plan-card>
+        }
+    </div>
+
+    <div class="pagination">
+        <button class="page-btn" [disabled]="page === 1" (click)="onPagination(page - 1)">Previous</button>
+        @for (p of visiblePages; track p) {
+            <button class="page-btn" [class.active]="page === p" (click)="onPagination(p)">{{ p }}</button>
+        }
+        <button class="page-btn" [disabled]="page === totalPages" (click)="onPagination(page + 1)">Next</button>
+    </div>
+</section>
