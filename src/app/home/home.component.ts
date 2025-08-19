@@ -5,6 +5,9 @@ import { Insurance } from "../app-interface/insurance";
 import { CommonModule } from "@angular/common";
 import { InsuranceService } from "../app-service/insurance.service";
 import { FormsModule } from "@angular/forms";
+import { LoadingService } from "../app-service/loading.service";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-home',
@@ -12,8 +15,9 @@ import { FormsModule } from "@angular/forms";
     CommonModule,
     RouterModule,
     FormsModule,
-    PlanCardComponent
-  ],
+    PlanCardComponent,
+    MatProgressSpinnerModule
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -24,6 +28,7 @@ export class HomeComponent {
   isSearchByCategory: boolean = false;
   searchText: string = '';
   debounceTimeout: any;
+  loadingService: LoadingService = inject(LoadingService);
 
   onSearch(): void {
     if (!this.searchText) {
@@ -38,9 +43,10 @@ export class HomeComponent {
   }
 
   constructor() {
+    this.loadingService.loadingOn();
     this.insuranceService.getAllInsurance().then(insuranceList => {
       this.insuranceList = insuranceList;
       this.filteredInsuranceList = insuranceList
-    });
+    }).finally(() => this.loadingService.loadingOff());
   }
 }

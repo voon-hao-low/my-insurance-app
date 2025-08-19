@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterLink,
     RouterOutlet,
+    LoadingSpinnerComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
